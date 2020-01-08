@@ -119,5 +119,10 @@ function getCards(listId, callback) {
 }
 
 // Task 1 board -> lists -> cards for list qwsa221
+getBoard((board)=>{getLists(board.id,(result)=>{getCards(result[0].id,(result)=>{console.log(result)})})})
 // Task 2 board -> lists -> cards for list qwsa221 and cards for list jwkh245 simultaneously
+getBoard((board)=>{getLists(board.id,(result)=>{getCards(result[0].id,(result)=>{console.log(result)})
+  getCards(result[1].id,(result)=>{console.log(result)})})})
+
 // Task 3 board -> lists -> cards for all lists simultaneously
+getBoard((board)=>{getLists(board.id,(result)=>{for(let i=0;i<result.length-1;i++){getCards(result[i].id,(result)=>{console.log(result)})}})})

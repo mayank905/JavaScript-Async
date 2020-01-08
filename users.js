@@ -20,6 +20,7 @@ function getUserProfile(userId){
     }).then(profiles => {
         console.log(`Received profile for ${userId}`);
         return profiles[userId];
+
     });
 }
 
@@ -39,9 +40,13 @@ function getUserPosts(userId){
  * Task 1: Send a login request for user1 -> get user profile data -> get user posts data
  */
 
-function userDataSerial(){
+async function userDataSerial(){
   console.time('userData-serial');
   // Write code here
+    let result1=await sendUserLoginRequest('user1')
+    let result2=await getUserProfile('user1')
+    let result3=await getUserPosts('user1')
+    console.log(result2,result3)
   console.timeEnd('userData-serial');
 }
 
@@ -49,9 +54,14 @@ function userDataSerial(){
  * Task 2: Send a login request for user1 -> get user profile data and get user posts data simultaneously
  */
 
-function userDataParallel() {
+async function userDataParallel() {
   console.time('userData-parallel');
   // Write code here
+    let result1=await sendUserLoginRequest('user1')
+    let result2= getUserProfile('user1')
+    let result3= getUserPosts('user1')
+    console.log(await result2,await result3)
+
   console.timeEnd('userData-parallel');
 }
 

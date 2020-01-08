@@ -123,7 +123,12 @@ function getCards(listId) {
     }, 1500);
   });
 }
-
+getBoard().then(result=>{return getLists(result.id)}).then(result=>{return getCards(result[0].id)}).then(result=>console.log(result))
 // Task 1 board -> lists -> cards for list qwsa221
+getBoard().then(result=>{return getLists(result.id)}).then(result=>{return Promise.all([getCards(result[0].id),getCards(result[1].id)])}).then(result=>console.log(result))
+
 // Task 2 board -> lists -> cards for list qwsa221 and cards for list jwkh245 simultaneously
+
+getBoard().then(result=>{return getLists(result.id)}).then(result=>{let array1=[];for(let i=0;i<result.length-1;i++){array1.push(getCards(result[i].id))}return Promise.all(array1)}).then(result=>console.log(result))
+
 // Task 3 board -> lists -> cards for all lists simultaneously
